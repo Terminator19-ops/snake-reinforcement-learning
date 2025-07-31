@@ -114,7 +114,7 @@ class Game:
             
         self.snake.walk()
         self.apple.draw()
-        self.reward = 0
+        self.reward = -0.1
         self.game_over  = False
 
         if self.collision(self.snake.x[0],self.snake.y[0],self.apple.x,self.apple.y):
@@ -124,7 +124,7 @@ class Game:
         # Fixed: Check collision with all body segments starting from index 1
         # (since index 0 is the head, we check from index 1 onwards)
         for i in range(1, self.snake.length):
-            if self.collision(self.snake.x[0],self.snake.y[0],self.snake.x[i],self.snake.y[i]) or self.frame_iteration>100*self.snake.length:
+            if self.collision(self.snake.x[0],self.snake.y[0],self.snake.x[i],self.snake.y[i]):
                 self.game_over = True
                 self.reward = -100
                 return self.reward, self.game_over, self.snake.length-1
